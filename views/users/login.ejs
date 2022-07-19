@@ -1,0 +1,36 @@
+<% layout ('layouts/boilerplate.ejs') %>
+
+<div class="container d-flex justify-content-center align-items-center mt-5 mb-5">
+    <div class="row">
+        <div class="col-md-6 offset-md-3 col-xl-4 offset-xl-4">
+            <div class="card shadow">
+                <img src="https://images.unsplash.com/photo-1602684379319-1de467ca74e5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8"
+                    alt="" class="card-img-top" />
+                <div class="card-body">
+                    <h5 class="card-title">Faça seu Login</h5>
+                    <form action="/login" method="post" class="needs-validation" novalidate>
+                        <div class="mb-3">
+                            <label class="form-label" for="title">Usuário</label>
+                            <input class="form-control" type="text" name="username" id="title" autofocus required>
+                            <div class="invalid-feedback">
+                                Informe seu nome de usuário.
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="password">Senha</label>
+                            <input class="form-control" type="password" name="password" id="password" required>
+                            <div class="invalid-feedback">
+                                Informe uma senha.
+                            </div>
+                        </div>
+
+                        <div class="d-grid">
+                            <button class="btn btn-success">Entrar!</button>
+                        </div>
+                    </form>
+
+
+                </div>
+            </div>
+        </div>
+    </div>

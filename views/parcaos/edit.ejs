@@ -1,0 +1,68 @@
+<% layout ('layouts/boilerplate.ejs') %>
+
+<div class="row">
+    <h1 class="text-center">Atualizar Parcão</h1>
+    <div class="col-md-6 offset-md-3">
+        <form class="d-inline needs-validation" action="/parcaos/<%= parcao._id %>?_method=PUT" method="post"
+            enctype="multipart/form-data" novalidate>
+            <div class="mb-3">
+                <label class="form-label" for="title">Nome</label>
+                <input class="form-control" type="text" name="parcao[title]" id="title" value="<%= parcao.title %>"
+                    required>
+                <div class="invalid-feedback">
+                    Informe o nome.
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="location">Localização</label>
+                <input class="form-control" type="text" name="parcao[location]" id="location"
+                    value="<%= parcao.location %>" required>
+                <div class="invalid-feedback">
+                    Diga a localização.
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="price">Preço</label>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="price-label">R$</span>
+                    <input type="text" class="form-control" id="price" name="parcao[price]" placeholder="0,00"
+                        aria-label="Price" aria-describedby="price-label" value="<%= parcao.price %>" required>
+                    <div class="invalid-feedback">
+                        Informe o preço.
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="description">Descrição</label>
+                    <textarea class="form-control" type="text" name="parcao[description]" id="description"
+                        required><%=parcao.description %></textarea>
+                    <div class="invalid-feedback">
+                        Descreva o Parcão.
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="image">Adicionar novas imagens</label>
+                    <input class="form-control" type="file" name="image" id="image" multiple>
+                </div>
+
+                <div class="mb-3">
+                    <% parcao.images.forEach(function(img,i){ %>
+                    <img src="<%= img.thumbnail %>" class="img-thumbnail">
+                    <div class="form-check-inline">
+                        <input type="checkbox" id="image-<%=i%>" name="deleteImages[]" value="<%=img.filename%>">
+                        <label for="image-<%=i%>">Remover</label>
+                    </div>
+
+                    <% }) %>
+                </div>
+
+                <button class="btn btn-success">Atualizar Parcão!</button>
+
+        </form>
+
+        <div>
+            <form class="d-inline" action="/parcaos/<%= parcao._id %>" method="get">
+                <button class="btn btn-warning">Cancelar</button>
+            </form>
+        </div>
+    </div>
+</div>

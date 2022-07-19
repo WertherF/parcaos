@@ -1,0 +1,46 @@
+<% layout ('layouts/boilerplate.ejs') %>
+
+<div id="cluster-map" class="mb-3">
+
+</div>
+
+
+<h1>Todos os Parcãos</h1>
+
+<% for (let parcao of parcaos) { %>
+<div class="card mb-3">
+    <div class="row">
+        <div class="col-md-4">
+            <% if(parcao.images.length) {%>
+            <img src="<%= parcao.images[0].url%>" class="img-fluid rounded-start" alt="" height="200px">
+            <% } else { %>
+            <img src=" https://res.cloudinary.com/dn1yvazgc/image/upload/v1657659797/Parcaos/ihnae9m0dyhbdbipmxej.jpg"
+                class="img-fluid" alt="">
+            <% } %>
+        </div>
+        <div class="col-md-8 mb-3 mt-3">
+            <h5 class="card-title">
+                <%= parcao.title %>
+            </h5>
+            <p class="card-text">
+                <%= parcao.description %>
+            </p>
+            <p class="card-text">
+                <small class="text-muted">
+                    <%= parcao.location %>
+                </small>
+            </p>
+            <a href="/parcaos/<%= parcao._id %>" class="btn btn-primary">Mais detalhes</a>
+        </div>
+    </div>
+</div>
+<% }%>
+
+<script>
+    const mapboxToken = '<%- process.env.MAPBOX_TOKEN %>'
+    /* beautify preserve:start */
+                const parcaos = { features: <%- JSON.stringify(parcaos) %>}
+        /* beautify perserve:end */
+</script>
+
+<script src="/javascripts/clusterMap.js"></script>
